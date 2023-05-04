@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Elite_CG_API.DataAccess;
+using Elite_CG_API.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Elite_CG_API.Controllers
 {
@@ -19,20 +21,9 @@ namespace Elite_CG_API.Controllers
 
         [HttpGet]
         [Route("GitHubTimeToMergeMatrics")]
-        public async Task<ActionResult<IEnumerable<WeatherForecast>>> GetTimetoMergeGitData()
+        public async Task<ActionResult<TimeToMerge>> GetTimetoMergeGitData(DateTime fromDate, DateTime toDate)
         {
-            var data = Task.Factory.StartNew(() =>
-            {
-                return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                {
-                    Date = DateTime.Now.AddDays(index),
-                    TemperatureC = Random.Shared.Next(-20, 55),
-                    Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-                })
-                .ToArray();
-            });
-
-            return Ok(await data);
+            return Ok(await new TimeToMergeProvider().GetTimeToMergePRData(fromDate, toDate));
         }
     }
 }
