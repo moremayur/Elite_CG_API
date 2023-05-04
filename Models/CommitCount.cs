@@ -3,10 +3,10 @@
 
         public class Rootobject
         {
-            public Class1[] Property1 { get; set; }
+            public CommitCount[] Property1 { get; set; }
         }
 
-        public class Class1
+        public class CommitCount
         {
             public string sha { get; set; }
             public string node_id { get; set; }
