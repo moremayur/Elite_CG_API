@@ -14,11 +14,16 @@ namespace Elite_CG_API.DataAccess
         internal async Task<Rootobject> GetCommitCount()
         {
             Rootobject rootobject = new Rootobject();
-            using (var response = await new CommonData().Client.GetAsync(CommonData.Base_URL + "repos/"+CommonData.Repo_Owner + "/" + CommonData.Repo_Name + "/"+"commits"))
+            try
             {
-                string apiResponse = await response.Content.ReadAsStringAsync();
+                string apiURL = CommonData.Base_URL + "repos/" + CommonData.Repo_Owner + "/" + CommonData.Repo_Name + "/" + "commits";
+                string apiResponse = await new CommonData().HttpCallHandler(apiURL);
                 rootobject = JsonConvert.DeserializeObject<Rootobject>(apiResponse);
             }
+            catch (Exception ex) { 
+                Console.WriteLine(ex.ToString());
+            }
+
             return rootobject;
         }
 
