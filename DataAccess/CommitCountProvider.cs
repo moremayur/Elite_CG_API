@@ -11,21 +11,15 @@ namespace Elite_CG_API.DataAccess
         {
         }
 
-        internal async Task<Rootobject> GetCommitCount()
+        internal async Task<IEnumerable<CommitCount>> GetCommitCount()
         {
-            Rootobject rootobject = new Rootobject();
-            try
+            IEnumerable<CommitCount> result= new List<CommitCount>();
+            using (var response = await new CommonData().Client.GetAsync(CommonData.Base_URL + "repos/"+CommonData.Repo_Owner + "/" + CommonData.Repo_Name + "/"+ "commits?since=2023-04-26T10:50:00z&until=2023-05-05T10:59:00z"))
             {
-                string apiURL = CommonData.Base_URL + "repos/" + CommonData.Repo_Owner + "/" + CommonData.Repo_Name + "/" + "commits";
-                string apiResponse = await new CommonData().HttpCallHandler(apiURL);
-                rootobject = JsonConvert.DeserializeObject<Rootobject>(apiResponse);
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<IEnumerable<CommitCount>>(apiResponse);
             }
-            catch (Exception ex) { 
-                Console.WriteLine(ex.ToString());
-            }
-
-            return rootobject;
+            return result ;
         }
-
     }
 }
