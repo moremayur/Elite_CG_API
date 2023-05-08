@@ -21,6 +21,5 @@ namespace Elite_CG_API.DataAccess
             }
             return result ;
         }
-
     }
 }
