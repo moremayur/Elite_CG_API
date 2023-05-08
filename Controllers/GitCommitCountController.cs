@@ -15,7 +15,7 @@ namespace Elite_CG_API.Controllers
 
         [HttpGet]
         [Route("CommitCount")]
-        public async Task<ActionResult<IEnumerable<CommitCount>>> GetTotalCommitCount()
+        public async Task<ActionResult<IEnumerable<AuthorDetails>>> GetTotalCommitCount()
         {
             return Ok(await new CommitCountProvider().GetCommitCount());
         }
