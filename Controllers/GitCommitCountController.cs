@@ -9,13 +9,13 @@ namespace Elite_CG_API.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GitCommitCountController : ControllerBase
     {
 
         [HttpGet]
         [Route("CommitCount")]
-        public async Task<ActionResult<IEnumerable<CommitCount>>> GetTotalCommitCount()
+        public async Task<ActionResult<IEnumerable<AuthorDetails>>> GetTotalCommitCount()
         {
             return Ok(await new CommitCountProvider().GetCommitCount());
         }

@@ -6,7 +6,7 @@ using System.Net;
 namespace Elite_CG_API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GithubPullRequestsController: ControllerBase
     {
         private readonly ILogger<GithubPullRequestsController> _logger;
