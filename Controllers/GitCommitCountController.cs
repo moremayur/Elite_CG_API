@@ -9,7 +9,7 @@ namespace Elite_CG_API.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GitCommitCountController : ControllerBase
     {
 
