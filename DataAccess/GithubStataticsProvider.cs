@@ -90,7 +90,7 @@ namespace Elite_CG_API.DataAccess
                     user.username = userName;
                     user.totalcontributation = Convert.ToInt32(Convert.ToString(starContributors[i]["contributions"]));
 
-                    string userDetailsApiUrl = CommonData.Base_URL + "/users/" + userName;
+                    string userDetailsApiUrl = CommonData.Base_URL + "users/" + userName;
                     string userDetailsResponse = await _commonObj.HttpCallHandler(userDetailsApiUrl);
 
                     if (!string.IsNullOrEmpty(userDetailsResponse))
