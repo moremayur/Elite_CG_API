@@ -15,9 +15,16 @@ namespace Elite_CG_API.Controllers
 
         [HttpGet]
         [Route("CommitCount")]
-        public async Task<ActionResult<IEnumerable<AuthorDetails>>> GetTotalCommitCount()
+        public async Task<ActionResult<IEnumerable<AuthorDetails>>> GetTotalCommitCount(DateTime FromDate, DateTime ToDate)
         {
-            return Ok(await new CommitCountProvider().GetCommitCount());
+            return Ok(await new CommitCountProvider().GetCommitCount(FromDate,ToDate));
+        }
+
+        [HttpGet]
+        [Route("AverageCodingDays")]
+        public async Task<ActionResult<double>> GetAverageCodingDays(DateTime FromDate, DateTime ToDate)
+        {
+            return Ok(await new CommitCountProvider().GetTotalAverageCodingDays(FromDate, ToDate));
         }
 
     }
